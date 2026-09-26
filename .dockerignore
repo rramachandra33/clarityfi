@@ -1,0 +1,32 @@
+# Keep the build context small and never let secrets or bulk files near the image.
+# Every directory pattern is anchored with a leading slash — an unanchored "data/"
+# would also match src/data/ (a real Python package) and silently break the build,
+# which is exactly what happened the first time this was written.
+/.git
+/.venv
+.env
+.env.*
+!.env.example
+.DS_Store
+.coverage
+/.pytest_cache
+__pycache__
+*.pyc
+
+# Frontend is served by Caddy on the host, not from inside this image.
+/frontend/
+node_modules/
+
+# Not needed at runtime.
+/tests/
+/docs/
+/data/
+/scripts/
+*.pptx
+*.docx
+*.docx.old
+*.xlsx
+/main.py
+/start.command
+/setup_mac.command
+README*.md

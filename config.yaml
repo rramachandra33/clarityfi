@@ -1,0 +1,80 @@
+# Non-secret tunables. Secrets (API keys) live only in .env.
+# Environment variables named in comments below override the matching value.
+
+llm:
+  temperature: 0.1          # OPENAI_CHAT_MODEL / OPENAI_BASE_URL come from .env
+  timeout_seconds: 60
+  max_retries: 2
+  max_output_tokens: 900
+
+rag:
+  backend: qdrant           # qdrant = hybrid dense+keyword | faiss = dense only
+  fallback: faiss           # automatic fallback if the primary fails or is empty ("" disables)
+  candidates: 20            # per-list candidates fused by RRF
+  rrf_k: 60
+  top_k: 3                  # RAG_TOP_K
+  score_threshold: 0.25     # below this a passage is treated as irrelevant
+  sourced_bonus: 0.08       # ranking-only boost for articles with a real source link (shown scores are unchanged)
+  overfetch: 3              # candidates fetched per wanted result so the boost can reorder near-ties
+  chunk_chars: 1200
+  chunk_overlap: 150
+
+cache:
+  qa_enabled: true
+  qa_max_entries: 500         # oldest-used entries are evicted beyond this
+  qa_exact_ttl_seconds: 86400
+  qa_semantic_ttl_seconds: 86400
+  qa_semantic_threshold: 0.90    # calibrated on real embeddings: paraphrases 0.91+, different questions <= 0.81
+  market_ttl_seconds: 1800   # 30 minutes
+  news_ttl_seconds: 1800
+
+market:
+  providers: [alphavantage, yfinance, mock]   # primary -> fallback -> outage sample data
+  request_timeout_seconds: 10
+  max_retries: 3
+  retry_base_delay_seconds: 0.5
+  alphavantage_calls_per_minute: 5
+  alphavantage_daily_limit: 25     # free tier; quota is tracked in the app DB across restarts
+  serpapi_monthly_limit: 100       # free tier
+  history_days: 180
+  history_ttl_seconds: 21600       # 6 hours
+  stale_max_age_seconds: 604800    # serve last-good cached data (flagged stale) if all providers are down
+
+
+guardrails:
+  max_input_chars: 4000
+  pii_entities: [PERSON, EMAIL_ADDRESS, PHONE_NUMBER, US_SSN, CREDIT_CARD, IBAN_CODE, US_BANK_NUMBER, IP_ADDRESS]
+  pii_score_threshold: 0.5
+  pii_output_entities: [EMAIL_ADDRESS, PHONE_NUMBER, US_SSN, CREDIT_CARD, IBAN_CODE, US_BANK_NUMBER, IP_ADDRESS]  # output: no PERSON (NER mislabels numbers)
+  pii_entity_thresholds:      # Presidio scores these low without context, so accept lower
+    PHONE_NUMBER: 0.4
+    US_BANK_NUMBER: 0.4
+  pii_model: en_core_web_lg   # spaCy model used by Presidio
+
+workflow:
+  agent_timeout_seconds: 45   # a slow agent is cut off and reported, the rest of the answer still returns
+  router_use_llm: true        # rules decide clear cases; the LLM only handles unsure ones
+
+api:
+  chat_per_minute: 20         # per user id (each turn can cost several LLM calls)
+  expensive_per_minute: 12    # per client: LLM narration and news-search endpoints
+  read_per_minute: 240        # per client: cheap dashboard reads
+
+auth:
+  session_days: 7             # login lasts this long (HttpOnly cookie; the server stores only a hash of the token)
+  min_password_length: 8
+  login_attempts: 5           # failed sign-ins per client + user id ...
+  login_window_seconds: 900   # ... in this window before "too many attempts"
+  ip_login_attempts: 30
+
+audio:
+  stt_model: whisper-1        # OpenAI speech-to-text (the browser's own voice input is the free fallback)
+  tts_model: tts-1            # OpenAI text-to-speech
+  voice: alloy
+  max_upload_bytes: 5000000   # audio is processed in memory and never stored
+  max_tts_chars: 1500
+  timeout_seconds: 45
+
+logging:
+  level: INFO
+  json: true

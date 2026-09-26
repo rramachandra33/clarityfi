@@ -1,0 +1,24 @@
+{
+  "articles": [
+    {
+      "title": "ETF basics",
+      "category": "ETFs",
+      "summary": "An exchange-traded fund, or ETF, pools money from many investors and holds a basket of assets such as stocks or bonds. ETF shares trade on an exchange during the day. A broad-market ETF can improve diversification, but investors should still examine its objective, holdings, fees, liquidity, and risks. Diversification reduces concentration risk but does not guarantee against loss."
+    },
+    {
+      "title": "Bonds and interest-rate risk",
+      "category": "Bonds",
+      "content": "A bond represents a loan to a government, municipality, or company. The issuer generally promises interest payments and return of principal at maturity. Bond prices and market interest rates usually move in opposite directions: when prevailing rates rise, existing fixed-rate bonds tend to become less attractive and their prices may fall. Longer-maturity bonds are generally more sensitive to rate changes. Credit risk is the possibility that the issuer cannot make promised payments."
+    },
+    {
+      "title": "Emergency fund purpose",
+      "category": "Saving",
+      "body": "An emergency fund is money reserved for unplanned, essential expenses or a temporary loss of income. Its priorities are accessibility and stability rather than maximum investment return. The appropriate amount depends on factors such as household expenses, job stability, insurance, dependents, and other available resources. Keeping this reserve separate from everyday spending can make it easier to protect."
+    },
+    {
+      "title": "Diversification explained",
+      "category": "Portfolio basics",
+      "definition": "Diversification means spreading investments across assets that do not all respond the same way to economic events. It can be applied across asset classes, companies, sectors, countries, and bond issuers. A portfolio can own many securities and still be concentrated if those securities share the same major risk. Diversification is a risk-management principle, not a promise of profit or protection from every market decline."
+    }
+  ]
+}

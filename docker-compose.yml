@@ -1,0 +1,13 @@
+services:
+  backend:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    # 127.0.0.1-only: Caddy (running on the host) proxies to this port; it is
+    # never exposed directly to the internet.
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      # SQLite (clarityfi.db, glossary.db), the embedded Qdrant index, and the
+      # FAISS fallback all live here and persist across rebuilds/restarts.
+      - ./data:/app/data

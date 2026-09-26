@@ -1,0 +1,14 @@
+[
+  {
+    "term": "Asset",
+    "definition": "Something with economic value.",
+    "category": "Basics",
+    "last_reviewed": "2026-09-15"
+  },
+  {
+    "term": "Asset Allocation",
+    "definition": "Dividing investments among asset classes such as stocks, bonds and cash.",
+    "category": "Portfolio",
+    "last_reviewed": "2026-09-15"
+  }
+]

@@ -1,0 +1,42 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv
+
+# Secrets and local config -- never commit
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+
+# Frontend
+node_modules/
+frontend/dist/
+
+# Runtime data (rebuilt by ingest / seed scripts)
+data/faiss/
+data/qdrant/
+data/*.db
+data/*.sqlite3
+data/*.db-wal
+data/*.db-shm
+
+# Office deliverables and demo production assets -- kept locally, not version-controlled
+*.docx
+*.pptx
+*.xlsx
+*.zip
+*.old
+/presentation/
+/frontend/public/presentation/
