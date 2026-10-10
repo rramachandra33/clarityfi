@@ -17,7 +17,7 @@ A multi-agent financial **education** assistant. Ask money questions in plain En
 | **MCP server** | Four read-only tools (`get_quote`, `analyze_portfolio`, `search_knowledge_base`, `project_goal`) for Claude Desktop and other MCP clients: [docs/mcp.md](docs/mcp.md) |
 | **Quality** | 1,308 backend tests (99% coverage) · 46 frontend tests · 29 end-to-end scenarios |
 
-Design details, diagrams and decisions: [docs/design.md](docs/design.md). Rubric mapping: [docs/rubric_tally.md](docs/rubric_tally.md). Demo walkthrough: [docs/demo_script.md](docs/demo_script.md).
+Design details, diagrams and decisions: [docs/design.md](docs/design.md). Demo walkthrough: [docs/demo_script.md](docs/demo_script.md).
 
 ## Architecture at a glance
 
