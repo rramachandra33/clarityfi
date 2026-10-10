@@ -1,5 +1,7 @@
 # ClarityFI – AI Finance Assistant
 
+**Live:** https://clarityfi.rajur-dev.com
+
 A multi-agent financial **education** assistant. Ask money questions in plain English (typed or spoken), analyze a sample portfolio, check markets, plan a savings goal, read the news, and learn tax concepts. It explains; it does not give personal financial, investment, legal or tax advice, and every answer says so.
 
 **Stack:** React (Vite) · FastAPI · LangGraph + LangChain · OpenAI (GPT, embeddings, Whisper, TTS) · Qdrant + FAISS hybrid retrieval · SQLite · Presidio PII protection · Langfuse / LangSmith tracing.
@@ -171,6 +173,6 @@ tests/           unit/ integration/ e2e/        scripts/benchmark.py        docs
 - Rate limits and sign-in throttling are in-memory (per process). There is no e-mail verification or multi-factor sign-in yet (password reset is supported — see the FAQ above), and the demo password is public by design. User ids created before sign-in existed can be claimed by the first person to register them. For a public deployment use HTTPS (the cookie becomes `Secure` automatically) and a shared store for limits.
 - All 230 knowledge-base articles now carry a real, verified source and link (as of 2026-09-25; the original 90 placeholder-sourced articles were all re-sourced to real citations — SEC/Investor.gov, FINRA, IRS, CFPB, FDIC, TreasuryDirect and a few reputable finance-education sites). Search still prefers linked articles when they are nearly as relevant (`rag.sourced_bonus` in `config.yaml`), which now has no remaining placeholder-sourced articles to matter for.
 - Street addresses and dates of birth are not detected by the privacy filter.
-- Deployed on AWS EC2 (Docker Compose + Caddy): see [docs/deployment_aws.md](docs/deployment_aws.md). Pushing this repo to GitHub has not been done yet.
+- Deployed on AWS EC2 (Docker Compose + Caddy): see [docs/deployment_aws.md](docs/deployment_aws.md).
 
 Educational use only. Not personalized financial, investment, legal or tax advice.
